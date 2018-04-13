@@ -15,11 +15,14 @@
 int main(){
 
     tree *raiz = NULL;
-    int exit;
+    int *selecao = (int*) malloc(sizeof(int));
 
     while(1){
-        exit = chooseMenu(raiz);
-        if(exit == 3){
+        raiz = chooseMenu(raiz, selecao);
+        if(selecao[0] == 3){
+          free(selecao);
+          if(raiz != NULL)
+            deleteTree(raiz);
           return 0;
         }
     }

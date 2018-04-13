@@ -27,7 +27,8 @@ tree* loadTree(tree **save, tree **anterior, FILE *fp, int posicao, int lado);
 
 //void createGame(tree **atual, tree **anterior, int altura);
 
-tree* createGame(tree **atual, tree **anterior, int altura, int *deleted_position);
+tree* createGame(tree **atual, tree **anterior, int altura, int *deleted_position, FILE *fp);
 
 void playGame(tree **atual, int altura);
 
+tree* chooseMenu(tree *load, int *selecao);

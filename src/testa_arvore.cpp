@@ -3,6 +3,26 @@
 #include "funcoes.h"
 
 /*
+*  Testa a função chooseMenu() para o caso 2;
+*/
+
+TEST_CASE("Choose Menu 2", "Testar se o menu carrega o jogo corretamente (caso 2)"){
+	printf("\nCASO DE TESTE CHOOSE MENU - CASO 2\n");
+	printf("**********************************\n");
+
+	FILE* fp = NULL;
+
+	tree *caso_dois;
+	int *selecao = (int*) malloc(sizeof(int));
+	chooseMenu(caso_dois, selecao);
+
+	REQUIRE(caso_dois == NULL);
+	REQUIRE(caso_dois->sim != NULL);
+	REQUIRE(fp != NULL);
+	REQUIRE(selecao[0] == 2);
+}
+
+/*
 *  Testa a função newNode();
 */
 TEST_CASE("New Node", "Testar se o no foi criado e preenchido corretamente"){
@@ -77,6 +97,23 @@ TEST_CASE("Play Game", "Testar se a funcao percorre a arvore corretamente"){
 	playGame(&node, 1);
 
 	REQUIRE(node != NULL);
+}
+
+/*
+*  Testa a função chooseMenu() para o caso 3;
+*/
+TEST_CASE("Choose Menu 3", "Testar se o menu sai do jogo corretamente (caso 3)"){
+	printf("\nCASO DE TESTE CHOOSE MENU - CASO 3\n");
+	printf("**********************************\n");
+
+	FILE *fp = NULL;
+	int *selecao = (int*) malloc(sizeof(int));
+	tree *caso_tres;
+	chooseMenu(caso_tres, selecao);
+
+	//REQUIRE(caso_tres == NULL);
+	REQUIRE(fp != NULL);
+	REQUIRE(selecao[0] == 3);
 }
 
 // TODO: Dando erro! //
