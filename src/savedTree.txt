@@ -1,3 +1,2 @@
-1.lel
-2.seg
-5.ter
+1.E uma fruta?
+2.ye

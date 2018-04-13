@@ -19,7 +19,7 @@ void clearScreen();
 
 tree* newNode(char* pergunta, int valor);
 
-void deleteTree(tree *del);
+tree* deleteTree(tree *del);
 
 void saveTree(tree *save, FILE *fp);
 

@@ -42,13 +42,14 @@ tree* newNode(char* pergunta, int valor){
 /*
 *  Função que deleta recursivamente uma árvore ou sub árvore.
 */
-void deleteTree(tree *del){
+tree* deleteTree(tree *del){
 
     if(del != NULL){
       deleteTree(del->nao);
       deleteTree(del->sim);
       free(del);
     }
+    return NULL;
 }
 
 /*
@@ -137,104 +138,6 @@ tree* loadTree(tree **save, tree **anterior, FILE *fp, int posicao, int lado){
 /*
 *  Função que cria uma árvore do zero ou edita uma árvore existente,
    desde que o ponteiro raiz dessa árvore seja passada corretamente.
-*//*
-void createGame(tree **atual, tree **anterior, int altura){
-
-    int resposta;
-    char *pergunta;
-
-    pergunta = (char*) malloc(51*sizeof(char));
-
-    FILE *fp;
-
-    do{
-        clearScreen();
-        printf("\n**********************************\n");
-        printf("PERGUNTA ATUAL: %s\n", (*atual)->pergunta);
-        printf("\n MENU DO JOGO\n");
-        printf("\n 1: Essa pergunta/resposta nao faz sentido! (REMOVER)");
-        printf("\n 2: Positivo ");
-        printf("\n 3: Negativo ");
-        printf("\n 4: Voltar ");
-        printf("\n 5: Parar o jogo \n");
-        printf("**********************************\n");
-        printf("Selecione uma das alternativas: \n");
-        scanf("%d", &resposta);
-        getchar();
-    }while(resposta != 1 && resposta != 2 && resposta != 3 && resposta != 4 && resposta != 5);
-
-    switch(resposta){
-        case 1:
-            if((*atual)->valor % 2 == 0)
-              (*anterior)->sim = NULL;
-            else  (*anterior)->nao = NULL;
-
-            deleteTree(*atual);
-
-            createGame(&(*anterior), &(*anterior), altura--);
-            break;
-        case 2:
-            if(altura == 20){
-                printf("\nVoce nao pode criar mais perguntas!\n");
-            }
-
-            if((*atual)->sim == NULL){
-                printf("\nDigite a nova pergunta (sim): \n");
-                fgets(pergunta, 50, stdin);
-                strtok(pergunta, "\n");
-                (*atual)->sim = newNode(pergunta, ((*atual)->valor) * 2);
-            }
-
-            createGame(&(*atual)->sim, &(*atual), altura++);
-            break;
-        case 3:
-            if(altura == 20){
-                printf("\nVoce nao pode criar mais perguntas!\n");
-            }
-
-            if((*atual)->nao == NULL){
-                printf("\nDigite a nova pergunta (nao): \n");
-                fgets(pergunta, 50, stdin);
-                strtok(pergunta, "\n");
-                (*atual)->nao = newNode(pergunta, (((*atual)->valor * 2) + 1));
-            }
-
-            createGame(&(*atual)->nao, &(*atual), altura++);
-            break;
-        case 4:
-            createGame(&(*anterior), &(*anterior), altura--);
-            break;
-        case 5:
-            printf("\n%d\n", (*atual)->valor);
-  	        printf("%s\n", (*atual)->pergunta);
-            fp = fopen("savedTree.txt","w");
-            if (fp == NULL) {
-                printf("\n  Erro ao abrir o arquivo! Desligando...\n");
-                exit(-55);
-            }
-            saveTree(*atual, (fp));
-            fclose(fp);
-            return;
-            break;
-    }
-
-    if((*atual) != NULL){
-        printf("\n%d\n", (*atual)->valor);
-        printf("%s\n", (*atual)->pergunta);
-        fp = fopen("savedTree.txt","w");
-        if (fp == NULL) {
-            printf("\n  Erro ao abrir o arquivo! Desligando...\n");
-            exit(-55);
-        }
-        saveTree(*atual, fp);
-    }
-
-fclose(fp);
-}
-
-/*
-*  Função que cria uma árvore do zero ou edita uma árvore existente,
-   desde que o ponteiro raiz dessa árvore seja passada corretamente.
 */
 tree* createGame(tree **atual, tree **anterior, int altura, int *deleted_position, FILE *fp){
 
@@ -267,7 +170,7 @@ tree* createGame(tree **atual, tree **anterior, int altura, int *deleted_positio
               (*anterior)->sim = NULL;
             else  (*anterior)->nao = NULL;
 
-            deleteTree(*atual);
+            *atual = deleteTree(*atual);
             break;
         case 2:
             if(altura == 20){
@@ -312,8 +215,6 @@ tree* createGame(tree **atual, tree **anterior, int altura, int *deleted_positio
     }
 
     if((*atual) != NULL){
-        printf("\n%d\n", (*atual)->valor);
-        printf("%s\n", (*atual)->pergunta);
         fp = fopen("savedTree.txt","w");
         if (fp == NULL) {
             printf("\n  Erro ao abrir o arquivo! Desligando...\n");
@@ -479,7 +380,7 @@ tree* chooseMenu(tree *load, int *selecao){
             printf("\n**********************************");
             printf("\nSALVANDO SEU JOGO...\n");
             printf("**********************************\n");
-            
+
             fp = fopen("savedTree.txt","w");
             if (fp == NULL) {
                 printf("\n  Erro ao abrir o arquivo! Desligando...\n");

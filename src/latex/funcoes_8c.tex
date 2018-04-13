@@ -1,0 +1,116 @@
+\hypertarget{funcoes_8c}{}\section{funcoes.\+c File Reference}
+\label{funcoes_8c}\index{funcoes.\+c@{funcoes.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+Include dependency graph for funcoes.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{funcoes_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnode}{node}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structnode}{node} \hyperlink{funcoes_8c_a194aa098fccd2d4ab0e67b349d0db930}{tree}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{funcoes_8c_a9d7e8af417b6d543da691e9c0e2f6f9f}{clear\+Screen} ()
+\item 
+\hyperlink{funcoes_8c_a194aa098fccd2d4ab0e67b349d0db930}{tree} $\ast$ \hyperlink{funcoes_8c_a8a1d4d10337fa6080896c2a329d696d1}{new\+Node} (char $\ast$pergunta, int valor)
+\item 
+void \hyperlink{funcoes_8c_a509f56aea7c46bd9a92d110344b2c2ba}{delete\+Tree} (\hyperlink{funcoes_8c_a194aa098fccd2d4ab0e67b349d0db930}{tree} $\ast$del)
+\item 
+void \hyperlink{funcoes_8c_aa893184ff708158578bacb94ac2ac41e}{save\+Tree} (\hyperlink{funcoes_8c_a194aa098fccd2d4ab0e67b349d0db930}{tree} $\ast$save, F\+I\+LE $\ast$fp)
+\item 
+\hyperlink{funcoes_8c_a194aa098fccd2d4ab0e67b349d0db930}{tree} $\ast$ \hyperlink{funcoes_8c_a6b9025f47b1391cb6e7d9252273b8d00}{load\+Tree} (\hyperlink{funcoes_8c_a194aa098fccd2d4ab0e67b349d0db930}{tree} $\ast$$\ast$save, \hyperlink{funcoes_8c_a194aa098fccd2d4ab0e67b349d0db930}{tree} $\ast$$\ast$anterior, F\+I\+LE $\ast$fp, int posicao, int lado)
+\item 
+void \hyperlink{funcoes_8c_a7f50e676121b9bfd995e3efa1a8a6536}{create\+Game} (\hyperlink{funcoes_8c_a194aa098fccd2d4ab0e67b349d0db930}{tree} $\ast$$\ast$atual, \hyperlink{funcoes_8c_a194aa098fccd2d4ab0e67b349d0db930}{tree} $\ast$$\ast$anterior, int altura)
+\item 
+void \hyperlink{funcoes_8c_a1e840c01b998f6885081f7bbc4d4fcd5}{play\+Game} (\hyperlink{funcoes_8c_a194aa098fccd2d4ab0e67b349d0db930}{tree} $\ast$$\ast$atual, int altura)
+\item 
+void \hyperlink{funcoes_8c_a143f53ac63c5e3b260ff053190fa2d90}{choose\+Menu} (\hyperlink{funcoes_8c_a194aa098fccd2d4ab0e67b349d0db930}{tree} $\ast$load)
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\index{funcoes.\+c@{funcoes.\+c}!tree@{tree}}
+\index{tree@{tree}!funcoes.\+c@{funcoes.\+c}}
+\subsubsection[{\texorpdfstring{tree}{tree}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf node}  {\bf tree}}\hypertarget{funcoes_8c_a194aa098fccd2d4ab0e67b349d0db930}{}\label{funcoes_8c_a194aa098fccd2d4ab0e67b349d0db930}
+
+
+\subsection{Function Documentation}
+\index{funcoes.\+c@{funcoes.\+c}!choose\+Menu@{choose\+Menu}}
+\index{choose\+Menu@{choose\+Menu}!funcoes.\+c@{funcoes.\+c}}
+\subsubsection[{\texorpdfstring{choose\+Menu(tree $\ast$load)}{chooseMenu(tree *load)}}]{\setlength{\rightskip}{0pt plus 5cm}void choose\+Menu (
+\begin{DoxyParamCaption}
+\item[{{\bf tree} $\ast$}]{load}
+\end{DoxyParamCaption}
+)}\hypertarget{funcoes_8c_a143f53ac63c5e3b260ff053190fa2d90}{}\label{funcoes_8c_a143f53ac63c5e3b260ff053190fa2d90}
+\index{funcoes.\+c@{funcoes.\+c}!clear\+Screen@{clear\+Screen}}
+\index{clear\+Screen@{clear\+Screen}!funcoes.\+c@{funcoes.\+c}}
+\subsubsection[{\texorpdfstring{clear\+Screen()}{clearScreen()}}]{\setlength{\rightskip}{0pt plus 5cm}void clear\+Screen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{funcoes_8c_a9d7e8af417b6d543da691e9c0e2f6f9f}{}\label{funcoes_8c_a9d7e8af417b6d543da691e9c0e2f6f9f}
+\index{funcoes.\+c@{funcoes.\+c}!create\+Game@{create\+Game}}
+\index{create\+Game@{create\+Game}!funcoes.\+c@{funcoes.\+c}}
+\subsubsection[{\texorpdfstring{create\+Game(tree $\ast$$\ast$atual, tree $\ast$$\ast$anterior, int altura)}{createGame(tree **atual, tree **anterior, int altura)}}]{\setlength{\rightskip}{0pt plus 5cm}void create\+Game (
+\begin{DoxyParamCaption}
+\item[{{\bf tree} $\ast$$\ast$}]{atual, }
+\item[{{\bf tree} $\ast$$\ast$}]{anterior, }
+\item[{int}]{altura}
+\end{DoxyParamCaption}
+)}\hypertarget{funcoes_8c_a7f50e676121b9bfd995e3efa1a8a6536}{}\label{funcoes_8c_a7f50e676121b9bfd995e3efa1a8a6536}
+\index{funcoes.\+c@{funcoes.\+c}!delete\+Tree@{delete\+Tree}}
+\index{delete\+Tree@{delete\+Tree}!funcoes.\+c@{funcoes.\+c}}
+\subsubsection[{\texorpdfstring{delete\+Tree(tree $\ast$del)}{deleteTree(tree *del)}}]{\setlength{\rightskip}{0pt plus 5cm}void delete\+Tree (
+\begin{DoxyParamCaption}
+\item[{{\bf tree} $\ast$}]{del}
+\end{DoxyParamCaption}
+)}\hypertarget{funcoes_8c_a509f56aea7c46bd9a92d110344b2c2ba}{}\label{funcoes_8c_a509f56aea7c46bd9a92d110344b2c2ba}
+\index{funcoes.\+c@{funcoes.\+c}!load\+Tree@{load\+Tree}}
+\index{load\+Tree@{load\+Tree}!funcoes.\+c@{funcoes.\+c}}
+\subsubsection[{\texorpdfstring{load\+Tree(tree $\ast$$\ast$save, tree $\ast$$\ast$anterior, F\+I\+L\+E $\ast$fp, int posicao, int lado)}{loadTree(tree **save, tree **anterior, FILE *fp, int posicao, int lado)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tree}$\ast$ load\+Tree (
+\begin{DoxyParamCaption}
+\item[{{\bf tree} $\ast$$\ast$}]{save, }
+\item[{{\bf tree} $\ast$$\ast$}]{anterior, }
+\item[{F\+I\+LE $\ast$}]{fp, }
+\item[{int}]{posicao, }
+\item[{int}]{lado}
+\end{DoxyParamCaption}
+)}\hypertarget{funcoes_8c_a6b9025f47b1391cb6e7d9252273b8d00}{}\label{funcoes_8c_a6b9025f47b1391cb6e7d9252273b8d00}
+\index{funcoes.\+c@{funcoes.\+c}!new\+Node@{new\+Node}}
+\index{new\+Node@{new\+Node}!funcoes.\+c@{funcoes.\+c}}
+\subsubsection[{\texorpdfstring{new\+Node(char $\ast$pergunta, int valor)}{newNode(char *pergunta, int valor)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tree}$\ast$ new\+Node (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{pergunta, }
+\item[{int}]{valor}
+\end{DoxyParamCaption}
+)}\hypertarget{funcoes_8c_a8a1d4d10337fa6080896c2a329d696d1}{}\label{funcoes_8c_a8a1d4d10337fa6080896c2a329d696d1}
+\index{funcoes.\+c@{funcoes.\+c}!play\+Game@{play\+Game}}
+\index{play\+Game@{play\+Game}!funcoes.\+c@{funcoes.\+c}}
+\subsubsection[{\texorpdfstring{play\+Game(tree $\ast$$\ast$atual, int altura)}{playGame(tree **atual, int altura)}}]{\setlength{\rightskip}{0pt plus 5cm}void play\+Game (
+\begin{DoxyParamCaption}
+\item[{{\bf tree} $\ast$$\ast$}]{atual, }
+\item[{int}]{altura}
+\end{DoxyParamCaption}
+)}\hypertarget{funcoes_8c_a1e840c01b998f6885081f7bbc4d4fcd5}{}\label{funcoes_8c_a1e840c01b998f6885081f7bbc4d4fcd5}
+\index{funcoes.\+c@{funcoes.\+c}!save\+Tree@{save\+Tree}}
+\index{save\+Tree@{save\+Tree}!funcoes.\+c@{funcoes.\+c}}
+\subsubsection[{\texorpdfstring{save\+Tree(tree $\ast$save, F\+I\+L\+E $\ast$fp)}{saveTree(tree *save, FILE *fp)}}]{\setlength{\rightskip}{0pt plus 5cm}void save\+Tree (
+\begin{DoxyParamCaption}
+\item[{{\bf tree} $\ast$}]{save, }
+\item[{F\+I\+LE $\ast$}]{fp}
+\end{DoxyParamCaption}
+)}\hypertarget{funcoes_8c_aa893184ff708158578bacb94ac2ac41e}{}\label{funcoes_8c_aa893184ff708158578bacb94ac2ac41e}
