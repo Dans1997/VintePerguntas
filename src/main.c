@@ -8,6 +8,10 @@
 #include <unistd.h>
 #include <funcoes.h>
 
+/*
+*  Função main.
+* Chama o menu até que o usuário queira sair do jogo (caso 3).
+*/
 int main(){
 
     tree *raiz = NULL;

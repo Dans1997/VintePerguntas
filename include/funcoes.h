@@ -4,6 +4,10 @@
 
  #include <stdio.h>
 
+/*
+* Cabeçalhos das funções.
+*/
+
 typedef struct node {
      int valor;
      char *pergunta;
@@ -14,4 +18,8 @@ typedef struct node {
 void clearScreen();
 
 tree* newNode(char* pergunta, int valor);
+
+void deleteTree(tree *del);
+
+void saveTree(tree *save, FILE *fp);
 
