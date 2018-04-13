@@ -15,5 +15,12 @@
 int main(){
 
     tree *raiz = NULL;
+    int exit;
 
+    while(1){
+        exit = chooseMenu(raiz);
+        if(exit == 3){
+          return 0;
+        }
+    }
 }

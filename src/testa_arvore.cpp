@@ -2,7 +2,6 @@
 #include "catch.hpp"
 #include "funcoes.h"
 
-
 /*
 *  Testa a função newNode();
 */
@@ -64,10 +63,38 @@ TEST_CASE("Load Tree", "Testar se a arvore - ou subarvore - foi carregada corret
 	REQUIRE(fp != NULL);
 }
 
+/*
+*  Testa a função playGame();
+*/
+TEST_CASE("Play Game", "Testar se a funcao percorre a arvore corretamente"){
+	printf("\nCASO DE TESTE PLAY GAME\n");
+	printf("**********************************\n");
+
+	tree* node;
+	node = newNode("E uma fruta?", 1);
+	node->sim = newNode("E verde?", 2);
+	node->nao = newNode("E um objeto?", 3);
+	playGame(&node, 1);
+
+	REQUIRE(node != NULL);
+}
+
 // TODO: Dando erro! //
 
 /*
 
+TEST_CASE("Create Game", "Testar se a funcao de cria uma arvore corretamente"){
+	tree* node;
+	node = newNode("E uma fruta?", 1);
+	createGame(&node, &node, 1);
+
+	REQUIRE(node->sim != NULL);
+	REQUIRE(node->nao != NULL);
+}
+
+/*
+* Testa a função deleteTree();
+*/ /*
 TEST_CASE("Delete Tree", "Testar se a arvore - ou subarvore - foi deletada corretamente"){
 	tree* node = (tree*) malloc(sizeof(tree));
 	deleteTree(node);

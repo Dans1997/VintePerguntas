@@ -132,4 +132,155 @@ tree* loadTree(tree **save, tree **anterior, FILE *fp, int posicao, int lado){
     free(numero);
     return *anterior;
 
-}d
+}
+
+/*
+*  Função que cria uma árvore do zero ou edita uma árvore existente,
+   desde que o ponteiro raiz dessa árvore seja passada corretamente.
+*/
+tree* createGame(tree **atual, tree **anterior, int altura, int *deleted_position){
+
+    int resposta;
+    char *pergunta;
+
+    pergunta = (char*) malloc(51*sizeof(char));
+
+    FILE *fp;
+
+    do{
+        clearScreen();
+        printf("\n**********************************\n");
+        printf("PERGUNTA ATUAL: %s\n", (*atual)->pergunta);
+        printf("\n MENU DO JOGO\n");
+        printf("\n 1: Essa pergunta/resposta nao faz sentido! (REMOVER E VOLTAR PRO INICIO DA ARVORE)");
+        printf("\n 2: Positivo ");
+        printf("\n 3: Negativo ");
+        printf("\n 4: Parar o jogo \n");
+        printf("**********************************\n");
+        printf("Selecione uma das alternativas: \n");
+        scanf("%d", &resposta);
+        getchar();
+    }while(resposta != 1 && resposta != 2 && resposta != 3 && resposta != 4 && resposta != 5);
+
+    switch(resposta){
+        case 1:
+
+            deleted_position[0] = (*atual)->valor;
+
+            if((*atual)->valor % 2 == 0)
+              (*anterior)->sim = NULL;
+            else  (*anterior)->nao = NULL;
+
+            deleteTree(*atual);
+            break;
+        case 2:
+            if(altura == 20){
+                printf("\nVoce nao pode criar mais perguntas!\n");
+            }
+
+            if((*atual)->sim == NULL){
+                printf("\nDigite a nova pergunta (sim): \n");
+                fgets(pergunta, 50, stdin);
+                strtok(pergunta, "\n");
+                (*atual)->sim = newNode(pergunta, ((*atual)->valor) * 2);
+            }
+
+            createGame(&(*atual)->sim, &(*atual), altura++, deleted_position);
+            break;
+        case 3:
+            if(altura == 20){
+                printf("\nVoce nao pode criar mais perguntas!\n");
+            }
+
+            if((*atual)->nao == NULL){
+                printf("\nDigite a nova pergunta (nao): \n");
+                fgets(pergunta, 50, stdin);
+                strtok(pergunta, "\n");
+                (*atual)->nao = newNode(pergunta, (((*atual)->valor * 2) + 1));
+            }
+
+            createGame(&(*atual)->nao, &(*atual), altura++, deleted_position);
+            break;
+        case 4:
+            printf("\n%d\n", (*atual)->valor);
+  	        printf("%s\n", (*atual)->pergunta);
+            fp = fopen("savedTree.txt","w");
+            if (fp == NULL) {
+                printf("\n  Erro ao abrir o arquivo! Desligando...\n");
+                exit(-55);
+            }
+            saveTree(*atual, (fp));
+            fclose(fp);
+            break;
+    }
+
+    if((*atual) != NULL){
+        printf("\n%d\n", (*atual)->valor);
+        printf("%s\n", (*atual)->pergunta);
+        fp = fopen("savedTree.txt","w");
+        if (fp == NULL) {
+            printf("\n  Erro ao abrir o arquivo! Desligando...\n");
+            exit(-55);
+        }
+        saveTree(*atual, fp);
+    }
+
+if (fp != NULL)
+  fclose(fp);
+
+return *anterior;
+}
+
+/*
+*  Função simplificada de createGame();
+*  Nessa função. não existe a opção de criar mais perguntas.
+*  Passado o ponteiro correto, é possível apenas jogar o jogo.
+*/
+void playGame(tree **atual, int altura){
+
+    int aux;
+
+    do{
+      printf("\nPERGUNTA ATUAL: %s\n", (*atual)->pergunta);
+      printf("\n1: Sim ");
+      printf("\n2: Nao ");
+      printf("\n3: Sair");
+      printf("\nSelecione uma das alternativas: \n");
+      scanf("%d", &aux);
+    }while(aux != 1 && aux != 2 && aux != 3);
+
+    switch(aux){
+        case 1:
+          if( ((*atual)->sim == NULL && (*atual)->nao == NULL) || altura == 20){
+            printf("\nAha! Ganhei!\n");
+            printf("O que deseja fazer agora?\n");
+            return;
+          }
+          if((*atual)->sim != NULL){
+            playGame(&(*atual)->sim, altura++);
+          } else {
+            printf("\n A pergunta seguinte (sim) nao existe. \n");
+            playGame(&(*atual), altura);
+          }
+
+          break;
+
+        case 2:
+          if( ((*atual)->sim == NULL && (*atual)->nao == NULL) || altura == 20){
+            printf("\nAh, fala serio... Perdi!\n");
+            printf("O que deseja fazer agora?\n");
+            return;
+          }
+          if((*atual)->nao != NULL){
+            playGame(&(*atual)->nao, altura++);
+          } else {
+            printf("\n A pergunta seguinte (nao) nao existe. \n");
+            playGame(&(*atual), altura);
+          }
+          break;
+
+        case 3:
+          break;
+    }
+}
+
