@@ -15,4 +15,5 @@
 int main(){
 
     tree *raiz = NULL;
+
 }

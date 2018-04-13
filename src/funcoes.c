@@ -17,13 +17,18 @@
       struct node *nao;   /* Não -> Direita */
 } tree;
 
-
+/*
+*  Função que limpa a janela do terminal.
+*  Melhora experiência de impressão dos menus do jogo ao rodar o programa.
+*/
 void clearScreen(){
   const char *CLEAR_SCREEN_ANSI = "\e[1;1H\e[2J";
   write(STDOUT_FILENO, CLEAR_SCREEN_ANSI, 12);
 }
 
-
+/*
+*  Função que cria um novo nó na árvore.
+*/
 tree* newNode(char* pergunta, int valor){
 
     tree* newNode = (tree*) malloc((sizeof(tree)));
@@ -34,6 +39,9 @@ tree* newNode(char* pergunta, int valor){
     return newNode;
 }
 
+/*
+*  Função que deleta recursivamente uma árvore ou sub árvore.
+*/
 void deleteTree(tree *del){
 
     if(del != NULL){
@@ -43,6 +51,9 @@ void deleteTree(tree *del){
     }
 }
 
+/*
+*  Função que salva uma árvore ou sub árvore em um arquivo .txt.
+*/
 void saveTree(tree *save, FILE *fp){
 
     char *aux;
@@ -70,3 +81,55 @@ void saveTree(tree *save, FILE *fp){
 
     free(aux);
 }
+
+/*
+*  Função que carrega uma árvore ou sub árvore de um arquivo .txt.
+*  POSICAO_SCAN testa a posição achada no txt com a
+   posição que está sendo procurada na iteração atual
+*  Se a posição sendo procurada é achada
+   no arquivo, pega-se a pergunta dessa mesma linha
+   e cria-se um novo nó com esses valores.
+*  Depois, chama-se a função com o próximo ponteiro da esquerda.
+*  O ponteiro da direita só é chamado quando a posição sendo
+   procurada não existe no arquivo. Tal escolha é decidida pela
+   variável LADO.
+*/
+tree* loadTree(tree **save, tree **anterior, FILE *fp, int posicao, int lado){
+
+    int posicao_scan;
+    char *aux, *numero, *pergunta;
+
+    rewind(fp);
+
+    numero = (char*) malloc(4*(sizeof(char)));
+    pergunta = (char*) malloc(51*(sizeof(char)));
+    aux = (char*) malloc(2*(sizeof(char)));
+
+    while(!feof(fp)){
+
+        fscanf(fp, "%4[^.].", numero);
+
+        posicao_scan = atoi(numero);
+
+        if(posicao_scan == posicao){
+
+            fscanf(fp, "%50[^\n]\n", pergunta);
+
+            *save = newNode(pergunta, posicao);
+
+            loadTree(&(*save)->sim, save, fp, (((*save)->valor)*2), 1);
+
+        } else {
+            fscanf(fp, "%50[^\n]\n", aux);
+        }
+    }
+
+    if(lado == 1) {
+        loadTree(&(*anterior)->nao, anterior, fp, ((((*anterior)->valor)*2) + 1) , 0);
+    }
+
+    free(aux);
+    free(numero);
+    return *anterior;
+
+}d

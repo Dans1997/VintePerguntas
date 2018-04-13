@@ -23,3 +23,5 @@ void deleteTree(tree *del);
 
 void saveTree(tree *save, FILE *fp);
 
+tree* loadTree(tree **save, tree **anterior, FILE *fp, int posicao, int lado);
+
